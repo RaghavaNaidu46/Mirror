@@ -1,0 +1,99 @@
+name: HandMirror
+options:
+  bundleIdPrefix: com.handmirror
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+  developmentLanguage: en
+
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    PRODUCT_BUNDLE_IDENTIFIER: com.handmirror.app
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    CODE_SIGN_ENTITLEMENTS: Sources/HandMirror/Resources/HandMirror.entitlements
+    ENABLE_HARDENED_RUNTIME: NO
+    COMBINE_HIDPI_IMAGES: YES
+    ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    GENERATE_INFOPLIST_FILE: NO
+    INFOPLIST_FILE: Sources/HandMirror/Resources/Info.plist
+    SWIFT_TREAT_WARNINGS_AS_ERRORS: NO
+    ENABLE_PREVIEWS: YES
+
+packages:
+  KeyboardShortcuts:
+    url: https://github.com/sindresorhus/KeyboardShortcuts
+    from: "2.2.1"
+
+targets:
+  HandMirror:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/HandMirror
+        excludes:
+          - "Resources/Info.plist"
+          - "Resources/HandMirror.entitlements"
+    resources:
+      - path: Sources/HandMirror/Resources/Assets.xcassets
+        optional: true
+    dependencies:
+      - package: KeyboardShortcuts
+    info:
+      path: Sources/HandMirror/Resources/Info.plist
+      properties:
+        CFBundleName: Hand Mirror
+        CFBundleDisplayName: Hand Mirror
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleIdentifier: $(PRODUCT_BUNDLE_IDENTIFIER)
+        CFBundleExecutable: $(EXECUTABLE_NAME)
+        CFBundlePackageType: APPL
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
+        LSUIElement: true
+        NSHighResolutionCapable: true
+        NSCameraUsageDescription: "Hand Mirror uses the camera to show a live preview so you can check your appearance before video calls."
+        NSMicrophoneUsageDescription: "Hand Mirror uses the microphone to display live input levels for the Mic Check feature."
+        NSPrincipalClass: NSApplication
+        LSEnvironment:
+          MTL_DEBUG_LAYER: "0"
+          MTL_DEBUG_LAYER_ERROR_MODE: "nslog"
+          MTL_HUD_ENABLED: "0"
+
+# The Metal API validation layer raises a false-positive `didModifyRange:` assertion
+# on Apple Silicon when AVCapture reactions render into the preview layer (the
+# reactions compositor calls didModifyRange on a Shared-mode buffer, which is a
+# no-op on unified memory but trips the validator). Disable validation for the
+# Debug scheme so reactions don't abort the app.
+schemes:
+  HandMirror:
+    build:
+      targets:
+        HandMirror: all
+    run:
+      # Release config used here because Apple's Reactions framework
+      # (PTEffect/PTVFXRenderEffect) calls MTLDebugBuffer.didModifyRange:
+      # on Apple Silicon, which aborts under the Debug Metal validation
+      # layer — and that layer can't be turned off from app code on this
+      # macOS version. Release builds don't load MTLDebugBuffer at all.
+      config: Release
+      environmentVariables:
+        - variable: MTL_DEBUG_LAYER
+          value: "0"
+          isEnabled: true
+        - variable: MTL_DEBUG_LAYER_ERROR_MODE
+          value: nslog
+          isEnabled: true
+      disableMetalAPIValidation: true
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
