@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0133E60C73723F8C50C9BDB3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C3F721BAC9C70807F086A7 /* App.swift */; };
+		01480B9FE6E8AAE8C1E9D240 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60C2D3FDBDFC011A1D66479 /* Preferences.swift */; };
+		08A83D44B1AA524E2864ADD6 /* PolaroidSnapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD46E1EB96378961624798C /* PolaroidSnapView.swift */; };
+		09ECBB811F69970F2F892A43 /* SmartWindowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07388ECB7D287E707B915BF /* SmartWindowService.swift */; };
+		0B85B8EDDBD2C14946581341 /* AboutSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E569A09C27D82F8AF0AF3F /* AboutSettingsView.swift */; };
+		0C1F95179682064C639D0353 /* DetachedMirrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C37355054B89ED44E6E716 /* DetachedMirrorView.swift */; };
+		0F9140EF100603DF1B4E034B /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 554F8193D9D05299EA54B98B /* KeyboardShortcuts */; };
+		10ED59C0BD31D68D5CD6ED7E /* SnapsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C774920FEDE9AB99B4B9B9 /* SnapsSettingsView.swift */; };
+		12946A77BCCB7C4680A57E05 /* ReactionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021B0CCF883A9A6E6A059DCA /* ReactionsSettingsView.swift */; };
+		13629995885EEE5A1E3DBA1C /* SnapEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC22992404BE4D47E16280F /* SnapEditorView.swift */; };
+		1436D60471615E46BF2BEE3E /* AlternativeIconsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317038143DCBE68FDB30F351 /* AlternativeIconsSettingsView.swift */; };
+		1B6FF7FA53C118EBD0D26142 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC17F589DFC989482CD1AE5 /* CameraManager.swift */; };
+		35E12BE0562629453C9CC1C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60A31EBA1396EF72262EF6 /* AppDelegate.swift */; };
+		399DF5D9465FEFAFDCE9F70E /* OnboardingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E048FC4EF7249A07790E9 /* OnboardingWindowController.swift */; };
+		3BD84FBFA4F7E5A10E51AC97 /* SnapsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727262EDAE7A2DD2D30456D /* SnapsService.swift */; };
+		49B19ECD355C122B29C8B47F /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2048EF9ADBA8450C0397B70C /* MenuBarController.swift */; };
+		57249CA7EDFE79E465E851FB /* MicMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC11118D8DE710B4685171A /* MicMeterView.swift */; };
+		62B2AC72A9EA6E9F37EDDB63 /* MicCheckSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B08B624C412C275B444012 /* MicCheckSettingsView.swift */; };
+		693051C50AE73A294E51F010 /* NotchTriggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A8723BB1C910AA0D23641 /* NotchTriggerService.swift */; };
+		854BC061B4C61CC0AB46750A /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A58C2F2D477013F66E785 /* CameraPreviewView.swift */; };
+		90875FB999B6CCBED6EF1704 /* PaintCanvasOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF433C1F0A83693AC7F9EEBD /* PaintCanvasOverlay.swift */; };
+		A0267CF76B7D891B75CC6AC1 /* SmartWindowSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CB025F900562A8B39E428 /* SmartWindowSettingsView.swift */; };
+		A1B718B7197281F69AAD3EC0 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F92DCA345B029C5B098DE /* Shortcuts.swift */; };
+		B1C3A1F28F7FDC923CA0F427 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4FC583AFEB42E96D0AB9B6 /* OnboardingView.swift */; };
+		B9E6877C3A7C9151BC5A78FB /* MirrorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F628CA1F7B5DCF98588E89A8 /* MirrorWindowController.swift */; };
+		BBE5A709F6FDC6FE7FB1D195 /* PencilCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBA4E25C1DA079BF84C593B /* PencilCursor.swift */; };
+		BC6E9CEF7D261A0F26587614 /* SettingsRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10051009992C2B7249FC5FD /* SettingsRoot.swift */; };
+		C7DD44D4F062707F75710D18 /* ReactionsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4046FF418BB455498754A /* ReactionsBar.swift */; };
+		C7E13F24A148855F1D934B1B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFC129820F8326027BD7642 /* AppState.swift */; };
+		CC0AEF3F032DBBE379246462 /* NotchTriggerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9FCC2023CD75BAFF92B473 /* NotchTriggerSettingsView.swift */; };
+		D31D8664A2825E7C5891DC9B /* WindowMaskSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE60F3DA6F481572FC51A6B /* WindowMaskSettingsView.swift */; };
+		D9951DD27788D28E7440AABD /* SettingsOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC41CD1BE6C48C78E6DE96 /* SettingsOpener.swift */; };
+		E18C9C7F420CDCB7E55F2B4E /* MicMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D76D5B37E8CDBE57F0C27 /* MicMonitor.swift */; };
+		E78A9565EC116CAEBF8B41C4 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1F39C0217084166792076 /* GeneralSettingsView.swift */; };
+		F0C8713FD48050351F876558 /* MirrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CEEE040BDA40A01FB672D6 /* MirrorView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		021B0CCF883A9A6E6A059DCA /* ReactionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsView.swift; sourceTree = "<group>"; };
+		0EE60F3DA6F481572FC51A6B /* WindowMaskSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowMaskSettingsView.swift; sourceTree = "<group>"; };
+		0F4FC583AFEB42E96D0AB9B6 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		1DE1F39C0217084166792076 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		2048EF9ADBA8450C0397B70C /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+		272A58C2F2D477013F66E785 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		317038143DCBE68FDB30F351 /* AlternativeIconsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeIconsSettingsView.swift; sourceTree = "<group>"; };
+		6727262EDAE7A2DD2D30456D /* SnapsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsService.swift; sourceTree = "<group>"; };
+		6AFC129820F8326027BD7642 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		7DC17F589DFC989482CD1AE5 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		831E048FC4EF7249A07790E9 /* OnboardingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWindowController.swift; sourceTree = "<group>"; };
+		83C3F721BAC9C70807F086A7 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		854CB025F900562A8B39E428 /* SmartWindowSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWindowSettingsView.swift; sourceTree = "<group>"; };
+		8CD46E1EB96378961624798C /* PolaroidSnapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolaroidSnapView.swift; sourceTree = "<group>"; };
+		94B08B624C412C275B444012 /* MicCheckSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicCheckSettingsView.swift; sourceTree = "<group>"; };
+		96C37355054B89ED44E6E716 /* DetachedMirrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetachedMirrorView.swift; sourceTree = "<group>"; };
+		9B6A8723BB1C910AA0D23641 /* NotchTriggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchTriggerService.swift; sourceTree = "<group>"; };
+		9E60A31EBA1396EF72262EF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B09D76D5B37E8CDBE57F0C27 /* MicMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicMonitor.swift; sourceTree = "<group>"; };
+		BAF4046FF418BB455498754A /* ReactionsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsBar.swift; sourceTree = "<group>"; };
+		BBBA4E25C1DA079BF84C593B /* PencilCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilCursor.swift; sourceTree = "<group>"; };
+		BF433C1F0A83693AC7F9EEBD /* PaintCanvasOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintCanvasOverlay.swift; sourceTree = "<group>"; };
+		C60C2D3FDBDFC011A1D66479 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		CE9FCC2023CD75BAFF92B473 /* NotchTriggerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchTriggerSettingsView.swift; sourceTree = "<group>"; };
+		D07388ECB7D287E707B915BF /* SmartWindowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWindowService.swift; sourceTree = "<group>"; };
+		D93F92DCA345B029C5B098DE /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
+		D9CEEE040BDA40A01FB672D6 /* MirrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorView.swift; sourceTree = "<group>"; };
+		DFC11118D8DE710B4685171A /* MicMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicMeterView.swift; sourceTree = "<group>"; };
+		E062D19EF5F4FE5751141F96 /* HandMirror.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandMirror.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E10051009992C2B7249FC5FD /* SettingsRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRoot.swift; sourceTree = "<group>"; };
+		E1C774920FEDE9AB99B4B9B9 /* SnapsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsSettingsView.swift; sourceTree = "<group>"; };
+		E8E569A09C27D82F8AF0AF3F /* AboutSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSettingsView.swift; sourceTree = "<group>"; };
+		EDC22992404BE4D47E16280F /* SnapEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapEditorView.swift; sourceTree = "<group>"; };
+		F628CA1F7B5DCF98588E89A8 /* MirrorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorWindowController.swift; sourceTree = "<group>"; };
+		FADC41CD1BE6C48C78E6DE96 /* SettingsOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOpener.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4BEA6766B5E62920B1C38908 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F9140EF100603DF1B4E034B /* KeyboardShortcuts in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12AC697DCECE7618216CDE40 = {
+			isa = PBXGroup;
+			children = (
+				2C1D85472905771968F7888F /* Sources */,
+				94A68F00418727FF2833F5B9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2C1D85472905771968F7888F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				54DAE5CB3197178E693CE334 /* HandMirror */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		4489EA5DDEEC97C707880E1A /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				7DC17F589DFC989482CD1AE5 /* CameraManager.swift */,
+				272A58C2F2D477013F66E785 /* CameraPreviewView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		54DAE5CB3197178E693CE334 /* HandMirror */ = {
+			isa = PBXGroup;
+			children = (
+				83C3F721BAC9C70807F086A7 /* App.swift */,
+				9E60A31EBA1396EF72262EF6 /* AppDelegate.swift */,
+				6AFC129820F8326027BD7642 /* AppState.swift */,
+				C60C2D3FDBDFC011A1D66479 /* Preferences.swift */,
+				4489EA5DDEEC97C707880E1A /* Camera */,
+				ED940450DDBB6D71BD2600CD /* MenuBar */,
+				77816EB62F6DB05AF089F545 /* MicCheck */,
+				A0F53F7ADB02EEA0D86EA08B /* NotchTrigger */,
+				F79A933A213A6411F637423E /* Onboarding */,
+				B6FAD4B0472E6AE36758F9FF /* Reactions */,
+				AF6B20ABB09004B8F8A1E64D /* Shortcuts */,
+				A3DD2E29D664B709B48F07D0 /* SmartWindow */,
+				7DDD3800BC7DF590BDE53681 /* Snaps */,
+				B6646F3B332F51B719B3FE25 /* Views */,
+			);
+			path = HandMirror;
+			sourceTree = "<group>";
+		};
+		77816EB62F6DB05AF089F545 /* MicCheck */ = {
+			isa = PBXGroup;
+			children = (
+				DFC11118D8DE710B4685171A /* MicMeterView.swift */,
+				B09D76D5B37E8CDBE57F0C27 /* MicMonitor.swift */,
+			);
+			path = MicCheck;
+			sourceTree = "<group>";
+		};
+		7DDD3800BC7DF590BDE53681 /* Snaps */ = {
+			isa = PBXGroup;
+			children = (
+				BF433C1F0A83693AC7F9EEBD /* PaintCanvasOverlay.swift */,
+				BBBA4E25C1DA079BF84C593B /* PencilCursor.swift */,
+				8CD46E1EB96378961624798C /* PolaroidSnapView.swift */,
+				EDC22992404BE4D47E16280F /* SnapEditorView.swift */,
+				6727262EDAE7A2DD2D30456D /* SnapsService.swift */,
+			);
+			path = Snaps;
+			sourceTree = "<group>";
+		};
+		8BCA643E1D919FA5F8607845 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E8E569A09C27D82F8AF0AF3F /* AboutSettingsView.swift */,
+				317038143DCBE68FDB30F351 /* AlternativeIconsSettingsView.swift */,
+				1DE1F39C0217084166792076 /* GeneralSettingsView.swift */,
+				94B08B624C412C275B444012 /* MicCheckSettingsView.swift */,
+				CE9FCC2023CD75BAFF92B473 /* NotchTriggerSettingsView.swift */,
+				021B0CCF883A9A6E6A059DCA /* ReactionsSettingsView.swift */,
+				FADC41CD1BE6C48C78E6DE96 /* SettingsOpener.swift */,
+				E10051009992C2B7249FC5FD /* SettingsRoot.swift */,
+				854CB025F900562A8B39E428 /* SmartWindowSettingsView.swift */,
+				E1C774920FEDE9AB99B4B9B9 /* SnapsSettingsView.swift */,
+				0EE60F3DA6F481572FC51A6B /* WindowMaskSettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		94A68F00418727FF2833F5B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E062D19EF5F4FE5751141F96 /* HandMirror.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A0F53F7ADB02EEA0D86EA08B /* NotchTrigger */ = {
+			isa = PBXGroup;
+			children = (
+				9B6A8723BB1C910AA0D23641 /* NotchTriggerService.swift */,
+			);
+			path = NotchTrigger;
+			sourceTree = "<group>";
+		};
+		A3DD2E29D664B709B48F07D0 /* SmartWindow */ = {
+			isa = PBXGroup;
+			children = (
+				D07388ECB7D287E707B915BF /* SmartWindowService.swift */,
+			);
+			path = SmartWindow;
+			sourceTree = "<group>";
+		};
+		AF6B20ABB09004B8F8A1E64D /* Shortcuts */ = {
+			isa = PBXGroup;
+			children = (
+				D93F92DCA345B029C5B098DE /* Shortcuts.swift */,
+			);
+			path = Shortcuts;
+			sourceTree = "<group>";
+		};
+		B6646F3B332F51B719B3FE25 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96C37355054B89ED44E6E716 /* DetachedMirrorView.swift */,
+				D9CEEE040BDA40A01FB672D6 /* MirrorView.swift */,
+				F628CA1F7B5DCF98588E89A8 /* MirrorWindowController.swift */,
+				8BCA643E1D919FA5F8607845 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B6FAD4B0472E6AE36758F9FF /* Reactions */ = {
+			isa = PBXGroup;
+			children = (
+				BAF4046FF418BB455498754A /* ReactionsBar.swift */,
+			);
+			path = Reactions;
+			sourceTree = "<group>";
+		};
+		ED940450DDBB6D71BD2600CD /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				2048EF9ADBA8450C0397B70C /* MenuBarController.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		F79A933A213A6411F637423E /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				0F4FC583AFEB42E96D0AB9B6 /* OnboardingView.swift */,
+				831E048FC4EF7249A07790E9 /* OnboardingWindowController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		81C6C8A932BA143C118DC9FE /* HandMirror */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9148EC702B24E893FA062F9D /* Build configuration list for PBXNativeTarget "HandMirror" */;
+			buildPhases = (
+				E9E9D26385A5C7C45DC10186 /* Sources */,
+				4BEA6766B5E62920B1C38908 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HandMirror;
+			packageProductDependencies = (
+				554F8193D9D05299EA54B98B /* KeyboardShortcuts */,
+			);
+			productName = HandMirror;
+			productReference = E062D19EF5F4FE5751141F96 /* HandMirror.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F93B7DCF2A4DAC85DD9486DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					81C6C8A932BA143C118DC9FE = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 5785DE80AB07C4B7605D50B0 /* Build configuration list for PBXProject "HandMirror" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 12AC697DCECE7618216CDE40;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				194C749231A6816E39A755FC /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 94A68F00418727FF2833F5B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81C6C8A932BA143C118DC9FE /* HandMirror */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E9E9D26385A5C7C45DC10186 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B85B8EDDBD2C14946581341 /* AboutSettingsView.swift in Sources */,
+				1436D60471615E46BF2BEE3E /* AlternativeIconsSettingsView.swift in Sources */,
+				0133E60C73723F8C50C9BDB3 /* App.swift in Sources */,
+				35E12BE0562629453C9CC1C4 /* AppDelegate.swift in Sources */,
+				C7E13F24A148855F1D934B1B /* AppState.swift in Sources */,
+				1B6FF7FA53C118EBD0D26142 /* CameraManager.swift in Sources */,
+				854BC061B4C61CC0AB46750A /* CameraPreviewView.swift in Sources */,
+				0C1F95179682064C639D0353 /* DetachedMirrorView.swift in Sources */,
+				E78A9565EC116CAEBF8B41C4 /* GeneralSettingsView.swift in Sources */,
+				49B19ECD355C122B29C8B47F /* MenuBarController.swift in Sources */,
+				62B2AC72A9EA6E9F37EDDB63 /* MicCheckSettingsView.swift in Sources */,
+				57249CA7EDFE79E465E851FB /* MicMeterView.swift in Sources */,
+				E18C9C7F420CDCB7E55F2B4E /* MicMonitor.swift in Sources */,
+				F0C8713FD48050351F876558 /* MirrorView.swift in Sources */,
+				B9E6877C3A7C9151BC5A78FB /* MirrorWindowController.swift in Sources */,
+				693051C50AE73A294E51F010 /* NotchTriggerService.swift in Sources */,
+				CC0AEF3F032DBBE379246462 /* NotchTriggerSettingsView.swift in Sources */,
+				B1C3A1F28F7FDC923CA0F427 /* OnboardingView.swift in Sources */,
+				399DF5D9465FEFAFDCE9F70E /* OnboardingWindowController.swift in Sources */,
+				90875FB999B6CCBED6EF1704 /* PaintCanvasOverlay.swift in Sources */,
+				BBE5A709F6FDC6FE7FB1D195 /* PencilCursor.swift in Sources */,
+				08A83D44B1AA524E2864ADD6 /* PolaroidSnapView.swift in Sources */,
+				01480B9FE6E8AAE8C1E9D240 /* Preferences.swift in Sources */,
+				C7DD44D4F062707F75710D18 /* ReactionsBar.swift in Sources */,
+				12946A77BCCB7C4680A57E05 /* ReactionsSettingsView.swift in Sources */,
+				D9951DD27788D28E7440AABD /* SettingsOpener.swift in Sources */,
+				BC6E9CEF7D261A0F26587614 /* SettingsRoot.swift in Sources */,
+				A1B718B7197281F69AAD3EC0 /* Shortcuts.swift in Sources */,
+				09ECBB811F69970F2F892A43 /* SmartWindowService.swift in Sources */,
+				A0267CF76B7D891B75CC6AC1 /* SmartWindowSettingsView.swift in Sources */,
+				13629995885EEE5A1E3DBA1C /* SnapEditorView.swift in Sources */,
+				3BD84FBFA4F7E5A10E51AC97 /* SnapsService.swift in Sources */,
+				10ED59C0BD31D68D5CD6ED7E /* SnapsSettingsView.swift in Sources */,
+				D31D8664A2825E7C5891DC9B /* WindowMaskSettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1AAFE1FA68B78061D557371A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Sources/HandMirror/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2A4382D8B67833CE7465A2C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sources/HandMirror/Resources/HandMirror.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/HandMirror/Resources/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.handmirror.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
+				SWIFT_VERSION = 5.10;
+			};
+			name = Debug;
+		};
+		B44D9535A1D513FC98C4600B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sources/HandMirror/Resources/HandMirror.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/HandMirror/Resources/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.handmirror.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
+				SWIFT_VERSION = 5.10;
+			};
+			name = Release;
+		};
+		D3F9AAEC51CAC7F2C74CFEAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Sources/HandMirror/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5785DE80AB07C4B7605D50B0 /* Build configuration list for PBXProject "HandMirror" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A4382D8B67833CE7465A2C1 /* Debug */,
+				B44D9535A1D513FC98C4600B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9148EC702B24E893FA062F9D /* Build configuration list for PBXNativeTarget "HandMirror" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AAFE1FA68B78061D557371A /* Debug */,
+				D3F9AAEC51CAC7F2C74CFEAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		194C749231A6816E39A755FC /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		554F8193D9D05299EA54B98B /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 194C749231A6816E39A755FC /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F93B7DCF2A4DAC85DD9486DB /* Project object */;
+}
