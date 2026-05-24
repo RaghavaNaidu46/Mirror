@@ -2,6 +2,8 @@ import SwiftUI
 
 struct WindowMaskSettingsView: View {
     @ObservedObject private var preferences = Preferences.shared
+    @EnvironmentObject private var pro: Pro
+    @EnvironmentObject private var appState: AppState
 
     var body: some View {
         SettingsForm {
@@ -9,7 +11,7 @@ struct WindowMaskSettingsView: View {
                 HStack(spacing: 24) {
                     ForEach(MaskStyle.allCases) { style in
                         Button {
-                            preferences.maskStyle = style.rawValue
+                            selectStyle(style)
                         } label: {
                             MaskStyleTile(style: style,
                                           selected: preferences.maskStyle == style.rawValue)
@@ -22,14 +24,22 @@ struct WindowMaskSettingsView: View {
             }
             Section {
                 LabeledSlider(title: "Zoom",
-                              value: $preferences.maskZoom,
+                              value: pro.gatedBinding($preferences.maskZoom, freeValue: 1.0, onLocked: { appState.showPaywall() }),
                               range: 1...3,
                               ticks: ["1×", "2×", "3×"])
                 LabeledSlider(title: "Rotation",
-                              value: $preferences.maskRotation,
+                              value: pro.gatedBinding($preferences.maskRotation, freeValue: 0.0, onLocked: { appState.showPaywall() }),
                               range: 0...270,
                               ticks: ["0°", "90°", "180°", "270°"])
             }
+        }
+    }
+
+    private func selectStyle(_ style: MaskStyle) {
+        if style == .defaultChrome || pro.canUsePlus {
+            preferences.maskStyle = style.rawValue
+        } else {
+            appState.showPaywall()
         }
     }
 }

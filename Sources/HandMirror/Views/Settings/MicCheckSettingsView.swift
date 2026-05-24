@@ -2,6 +2,8 @@ import SwiftUI
 
 struct MicCheckSettingsView: View {
     @ObservedObject private var preferences = Preferences.shared
+    @EnvironmentObject private var pro: Pro
+    @EnvironmentObject private var appState: AppState
 
     var body: some View {
         SettingsForm {
@@ -12,14 +14,14 @@ struct MicCheckSettingsView: View {
             .listRowBackground(Color.clear)
 
             Section {
-                Toggle(isOn: $preferences.micCheckEnabled) {
+                Toggle(isOn: pro.gatedBinding($preferences.micCheckEnabled, freeValue: false, onLocked: { appState.showPaywall() })) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Enable Mic Check")
                         Text("Quickly check if there's audio coming from your microphone")
                             .font(.caption).foregroundStyle(.secondary)
                     }
                 }
-                Toggle(isOn: $preferences.micCheckShowOnHover) {
+                Toggle(isOn: pro.gatedBinding($preferences.micCheckShowOnHover, freeValue: false, onLocked: { appState.showPaywall() })) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Show only on hover")
                         Text("Useful for when you're recording your screen")

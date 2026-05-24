@@ -2,6 +2,8 @@ import SwiftUI
 
 struct ReactionsSettingsView: View {
     @ObservedObject private var preferences = Preferences.shared
+    @EnvironmentObject private var pro: Pro
+    @EnvironmentObject private var appState: AppState
 
     var body: some View {
         SettingsForm {
@@ -12,7 +14,7 @@ struct ReactionsSettingsView: View {
             .listRowBackground(Color.clear)
 
             Section {
-                Toggle(isOn: $preferences.reactionsTriggersVisible) {
+                Toggle(isOn: pro.gatedBinding($preferences.reactionsTriggersVisible, freeValue: false, onLocked: { appState.showPaywall() })) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Show Reaction triggers")
                         Text("Trigger the native macOS Reactions directly from HandMirror")

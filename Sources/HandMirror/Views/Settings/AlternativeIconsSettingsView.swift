@@ -4,6 +4,7 @@ import AppKit
 struct AlternativeIconsSettingsView: View {
     @ObservedObject private var preferences = Preferences.shared
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var pro: Pro
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 18), count: 5)
 
@@ -14,10 +15,7 @@ struct AlternativeIconsSettingsView: View {
                     ForEach(MenuBarIcon.allCases) { icon in
                         MenuBarIconTile(icon: icon,
                                         selected: preferences.menuBarIconName == icon.rawValue)
-                            .onTapGesture {
-                                preferences.menuBarIconName = icon.rawValue
-                                NotificationCenter.default.post(name: .menuBarIconChanged, object: nil)
-                            }
+                            .onTapGesture { selectIcon(icon) }
                     }
                 }
                 .padding(.vertical, 8)
@@ -27,6 +25,10 @@ struct AlternativeIconsSettingsView: View {
                 Toggle(isOn: Binding(
                     get: { preferences.showInDock },
                     set: { newValue in
+                        if newValue && !pro.canUsePlus {
+                            appState.showPaywall()
+                            return
+                        }
                         preferences.showInDock = newValue
                         (NSApp.delegate as? AppDelegate)?.applyActivationPolicy()
                     }
@@ -34,6 +36,17 @@ struct AlternativeIconsSettingsView: View {
                     Text("Show icon in the Dock")
                 }
             }
+        }
+    }
+
+    /// The Default icon is free; anything else opens the paywall when the
+    /// user isn't subscribed.
+    private func selectIcon(_ icon: MenuBarIcon) {
+        if icon == .defaultIcon || pro.canUsePlus {
+            preferences.menuBarIconName = icon.rawValue
+            NotificationCenter.default.post(name: .menuBarIconChanged, object: nil)
+        } else {
+            appState.showPaywall()
         }
     }
 }

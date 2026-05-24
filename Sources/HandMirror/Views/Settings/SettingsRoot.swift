@@ -72,18 +72,38 @@ struct SettingsRoot: View {
         }
     }
 
-    // MARK: - Plan chip (decorative)
+    // MARK: - Plan chip
+    //
+    // Doubles as the entry point to the paywall when the user isn't Pro. If
+    // they're already subscribed it just reads "HandMirror Plus" as a badge.
 
+    @ToolbarContentBuilder
     private var planChip: some ToolbarContent {
         ToolbarItem(placement: .primaryAction) {
+            PlanChipButton()
+        }
+    }
+}
+
+private struct PlanChipButton: View {
+    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var pro: Pro
+
+    var body: some View {
+        Button {
+            if !pro.canUsePlus { appState.showPaywall() }
+        } label: {
             HStack(spacing: 6) {
-                Image(systemName: "camera.fill")
+                Image(systemName: pro.canUsePlus ? "checkmark.seal.fill" : "camera.fill")
                     .foregroundStyle(.red)
-                Text("HandMirror Plus").fontWeight(.semibold)
+                Text(pro.canUsePlus ? "HandMirror Plus" : "Get HandMirror Plus")
+                    .fontWeight(.semibold)
             }
             .padding(.horizontal, 12).padding(.vertical, 6)
             .background(Color.black.opacity(0.3), in: Capsule())
         }
+        .buttonStyle(.plain)
+        .disabled(pro.canUsePlus)
     }
 }
 

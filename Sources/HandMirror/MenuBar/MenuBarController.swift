@@ -11,6 +11,7 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
     private var eventMonitor: Any?
     private var popoverCursorMonitor: Any?
     private var globalCursorMonitor: Any?
+    private var firstLaunchHintPopover: NSPopover?
 
     init(appState: AppState) {
         self.appState = appState
@@ -66,6 +67,26 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
     /// the active mirror (detached window if present, otherwise the popover).
     func toggleFromShortcut() { primaryClick() }
 
+    /// Tiny first-launch tooltip anchored under the menu bar icon — points the
+    /// user at where the app lives. One-shot: AppDelegate sets the flag after
+    /// calling this so it never appears again.
+    func showFirstLaunchHint() {
+        guard let button = statusItem.button else { return }
+        // If the main popover happens to be open, don't double-stack.
+        if popover.isShown { return }
+
+        let hint = NSPopover()
+        hint.behavior = .transient
+        hint.animates = true
+        let view = FirstLaunchHintView { [weak hint] in hint?.performClose(nil) }
+        let hosting = NSHostingController(rootView: view)
+        hint.contentSize = NSSize(width: 260, height: 110)
+        hint.contentViewController = hosting
+        firstLaunchHintPopover = hint
+        NSApp.activate(ignoringOtherApps: true)
+        hint.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+    }
+
     /// Triggered by the Take Snap global shortcut or by the right-click menu item.
     func requestSnap() {
         appState.snaps.takeSnap()
@@ -80,6 +101,7 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         let mirrorRoot = MirrorView()
             .environmentObject(appState)
             .environmentObject(appState.preferences)
+            .environmentObject(appState.pro)
             .captureOpenSettings()
         popover.contentSize = appState.preferences.currentMirrorSize
         popover.contentViewController = NSHostingController(rootView: mirrorRoot)
@@ -131,7 +153,7 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
             return
         }
         if appState.preferences.onboardingComplete == false { return }
-        appState.cameraManager.start()
+        appState.cameraManager.requestAccessAndStart()
         popover.show(relativeTo: view.bounds, of: view, preferredEdge: .minY)
         appState.isMirrorOpen = true
         appState.activeMirrorWindow = popover.contentViewController?.view.window
@@ -143,7 +165,7 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         if window.isVisible {
             window.orderOut(nil)
         } else {
-            appState.cameraManager.start()
+            appState.cameraManager.requestAccessAndStart()
             window.makeKeyAndOrderFront(nil)
         }
     }
@@ -152,7 +174,7 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         guard let button = statusItem.button else { return }
         // Belt-and-braces: don't ever show the popover while a detached window is live.
         if appState.isDetached { return }
-        appState.cameraManager.start()
+        appState.cameraManager.requestAccessAndStart()
         popover.contentSize = appState.preferences.currentMirrorSize
         // Activate the app so the popover's window becomes key and claims
         // cursor authority — otherwise the cursor inherits whatever the
@@ -285,7 +307,14 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
 
     @objc private func menuDetach() {
         popover.performClose(nil)
-        detachIntoWindow()
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            if self.appState.pro.canUsePlus {
+                self.detachIntoWindow()
+            } else {
+                self.appState.showPaywall()
+            }
+        }
     }
 
     @objc private func menuSelectCamera(_ sender: NSMenuItem) {
@@ -296,9 +325,7 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
     }
 
     @objc private func menuPlus() {
-        // Placeholder for the upgrade screen — opens Settings for now.
-        NSApp.activate(ignoringOtherApps: true)
-        openSettings()
+        Task { @MainActor [weak self] in self?.appState.showPaywall() }
     }
 
     @objc private func menuSettings() {
@@ -327,7 +354,35 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
             }
         }
         appState.isDetached = true
-        appState.cameraManager.start()
+        appState.cameraManager.requestAccessAndStart()
         detachedWindowController?.showWindow(nil)
+    }
+}
+
+/// Compact "you are here" pointer shown under the status item the first time
+/// the user lands in the app post-onboarding.
+private struct FirstLaunchHintView: View {
+    let onDismiss: () -> Void
+
+    var body: some View {
+        VStack(spacing: 10) {
+            HStack(spacing: 6) {
+                Image(systemName: "arrow.up")
+                    .font(.system(size: 14, weight: .bold))
+                Text("You are here")
+                    .font(.system(size: 15, weight: .semibold))
+            }
+            Text("HandMirror lives in your menu bar — click the icon any time to open your mirror.")
+                .font(.system(size: 12))
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            Button("Got it", action: onDismiss)
+                .controlSize(.small)
+                .buttonStyle(.borderedProminent)
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
+        .frame(width: 260)
     }
 }

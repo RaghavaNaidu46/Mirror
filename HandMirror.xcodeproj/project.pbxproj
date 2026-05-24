@@ -19,12 +19,15 @@
 		13629995885EEE5A1E3DBA1C /* SnapEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC22992404BE4D47E16280F /* SnapEditorView.swift */; };
 		1436D60471615E46BF2BEE3E /* AlternativeIconsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317038143DCBE68FDB30F351 /* AlternativeIconsSettingsView.swift */; };
 		1B6FF7FA53C118EBD0D26142 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC17F589DFC989482CD1AE5 /* CameraManager.swift */; };
+		333E0696101E0C943974B791 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194E81E9DC7D34E40FDE5A5 /* PaywallView.swift */; };
 		35E12BE0562629453C9CC1C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60A31EBA1396EF72262EF6 /* AppDelegate.swift */; };
 		399DF5D9465FEFAFDCE9F70E /* OnboardingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E048FC4EF7249A07790E9 /* OnboardingWindowController.swift */; };
+		3ABB94F9908EF3643532328F /* VictoryGestureDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA95802DDC0FACEF9C0B6BC /* VictoryGestureDetector.swift */; };
 		3BD84FBFA4F7E5A10E51AC97 /* SnapsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727262EDAE7A2DD2D30456D /* SnapsService.swift */; };
 		486E151CF55531002BB2C761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 767E7ACAFBF8B2D6BEDF4B63 /* Assets.xcassets */; };
 		49B19ECD355C122B29C8B47F /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2048EF9ADBA8450C0397B70C /* MenuBarController.swift */; };
 		57249CA7EDFE79E465E851FB /* MicMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC11118D8DE710B4685171A /* MicMeterView.swift */; };
+		5CD25A3C038029415D583059 /* PaywallWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AE1B85FD9DAC96E5D78A6 /* PaywallWindowController.swift */; };
 		62B2AC72A9EA6E9F37EDDB63 /* MicCheckSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B08B624C412C275B444012 /* MicCheckSettingsView.swift */; };
 		693051C50AE73A294E51F010 /* NotchTriggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A8723BB1C910AA0D23641 /* NotchTriggerService.swift */; };
 		854BC061B4C61CC0AB46750A /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A58C2F2D477013F66E785 /* CameraPreviewView.swift */; };
@@ -35,6 +38,7 @@
 		B9E6877C3A7C9151BC5A78FB /* MirrorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F628CA1F7B5DCF98588E89A8 /* MirrorWindowController.swift */; };
 		BBE5A709F6FDC6FE7FB1D195 /* PencilCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBA4E25C1DA079BF84C593B /* PencilCursor.swift */; };
 		BC6E9CEF7D261A0F26587614 /* SettingsRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10051009992C2B7249FC5FD /* SettingsRoot.swift */; };
+		C70BF82E092C9D465473A077 /* ProGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0072057BB5AA8A1A90ED6 /* ProGate.swift */; };
 		C7DD44D4F062707F75710D18 /* ReactionsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4046FF418BB455498754A /* ReactionsBar.swift */; };
 		C7E13F24A148855F1D934B1B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFC129820F8326027BD7642 /* AppState.swift */; };
 		CC0AEF3F032DBBE379246462 /* NotchTriggerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9FCC2023CD75BAFF92B473 /* NotchTriggerSettingsView.swift */; };
@@ -42,6 +46,7 @@
 		D9951DD27788D28E7440AABD /* SettingsOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC41CD1BE6C48C78E6DE96 /* SettingsOpener.swift */; };
 		E18C9C7F420CDCB7E55F2B4E /* MicMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D76D5B37E8CDBE57F0C27 /* MicMonitor.swift */; };
 		E78A9565EC116CAEBF8B41C4 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1F39C0217084166792076 /* GeneralSettingsView.swift */; };
+		EF45B2F45974962B4C6FF69C /* Pro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A925C8B01F9074A47B7C4F0A /* Pro.swift */; };
 		F0C8713FD48050351F876558 /* MirrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CEEE040BDA40A01FB672D6 /* MirrorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,10 +54,13 @@
 		021B0CCF883A9A6E6A059DCA /* ReactionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSettingsView.swift; sourceTree = "<group>"; };
 		0EE60F3DA6F481572FC51A6B /* WindowMaskSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowMaskSettingsView.swift; sourceTree = "<group>"; };
 		0F4FC583AFEB42E96D0AB9B6 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		1194E81E9DC7D34E40FDE5A5 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		1DE1F39C0217084166792076 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		2048EF9ADBA8450C0397B70C /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
 		272A58C2F2D477013F66E785 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		2F1AE1B85FD9DAC96E5D78A6 /* PaywallWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallWindowController.swift; sourceTree = "<group>"; };
 		317038143DCBE68FDB30F351 /* AlternativeIconsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeIconsSettingsView.swift; sourceTree = "<group>"; };
+		5DA95802DDC0FACEF9C0B6BC /* VictoryGestureDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryGestureDetector.swift; sourceTree = "<group>"; };
 		6727262EDAE7A2DD2D30456D /* SnapsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsService.swift; sourceTree = "<group>"; };
 		6AFC129820F8326027BD7642 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		767E7ACAFBF8B2D6BEDF4B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,6 +74,7 @@
 		9B6A8723BB1C910AA0D23641 /* NotchTriggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchTriggerService.swift; sourceTree = "<group>"; };
 		9E60A31EBA1396EF72262EF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A86ADADE233FA680388C9CA7 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		A925C8B01F9074A47B7C4F0A /* Pro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pro.swift; sourceTree = "<group>"; };
 		B09D76D5B37E8CDBE57F0C27 /* MicMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicMonitor.swift; sourceTree = "<group>"; };
 		BAF4046FF418BB455498754A /* ReactionsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsBar.swift; sourceTree = "<group>"; };
 		BBBA4E25C1DA079BF84C593B /* PencilCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilCursor.swift; sourceTree = "<group>"; };
@@ -74,6 +83,7 @@
 		CE9FCC2023CD75BAFF92B473 /* NotchTriggerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchTriggerSettingsView.swift; sourceTree = "<group>"; };
 		CEB2F09792858B2061077B8C /* Dist.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Dist.xcconfig; sourceTree = "<group>"; };
 		D07388ECB7D287E707B915BF /* SmartWindowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWindowService.swift; sourceTree = "<group>"; };
+		D6D0072057BB5AA8A1A90ED6 /* ProGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProGate.swift; sourceTree = "<group>"; };
 		D93F92DCA345B029C5B098DE /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
 		D9CEEE040BDA40A01FB672D6 /* MirrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorView.swift; sourceTree = "<group>"; };
 		DFC11118D8DE710B4685171A /* MicMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicMeterView.swift; sourceTree = "<group>"; };
@@ -145,6 +155,7 @@
 				77816EB62F6DB05AF089F545 /* MicCheck */,
 				A0F53F7ADB02EEA0D86EA08B /* NotchTrigger */,
 				F79A933A213A6411F637423E /* Onboarding */,
+				77E688F55F0F8BAEA40571FB /* Pro */,
 				B6FAD4B0472E6AE36758F9FF /* Reactions */,
 				4D1BE73A22C5490569AAA237 /* Resources */,
 				AF6B20ABB09004B8F8A1E64D /* Shortcuts */,
@@ -164,6 +175,17 @@
 			path = MicCheck;
 			sourceTree = "<group>";
 		};
+		77E688F55F0F8BAEA40571FB /* Pro */ = {
+			isa = PBXGroup;
+			children = (
+				1194E81E9DC7D34E40FDE5A5 /* PaywallView.swift */,
+				2F1AE1B85FD9DAC96E5D78A6 /* PaywallWindowController.swift */,
+				A925C8B01F9074A47B7C4F0A /* Pro.swift */,
+				D6D0072057BB5AA8A1A90ED6 /* ProGate.swift */,
+			);
+			path = Pro;
+			sourceTree = "<group>";
+		};
 		7DDD3800BC7DF590BDE53681 /* Snaps */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +194,7 @@
 				8CD46E1EB96378961624798C /* PolaroidSnapView.swift */,
 				EDC22992404BE4D47E16280F /* SnapEditorView.swift */,
 				6727262EDAE7A2DD2D30456D /* SnapsService.swift */,
+				5DA95802DDC0FACEF9C0B6BC /* VictoryGestureDetector.swift */,
 			);
 			path = Snaps;
 			sourceTree = "<group>";
@@ -368,9 +391,13 @@
 				B1C3A1F28F7FDC923CA0F427 /* OnboardingView.swift in Sources */,
 				399DF5D9465FEFAFDCE9F70E /* OnboardingWindowController.swift in Sources */,
 				90875FB999B6CCBED6EF1704 /* PaintCanvasOverlay.swift in Sources */,
+				333E0696101E0C943974B791 /* PaywallView.swift in Sources */,
+				5CD25A3C038029415D583059 /* PaywallWindowController.swift in Sources */,
 				BBE5A709F6FDC6FE7FB1D195 /* PencilCursor.swift in Sources */,
 				08A83D44B1AA524E2864ADD6 /* PolaroidSnapView.swift in Sources */,
 				01480B9FE6E8AAE8C1E9D240 /* Preferences.swift in Sources */,
+				EF45B2F45974962B4C6FF69C /* Pro.swift in Sources */,
+				C70BF82E092C9D465473A077 /* ProGate.swift in Sources */,
 				C7DD44D4F062707F75710D18 /* ReactionsBar.swift in Sources */,
 				12946A77BCCB7C4680A57E05 /* ReactionsSettingsView.swift in Sources */,
 				D9951DD27788D28E7440AABD /* SettingsOpener.swift in Sources */,
@@ -381,6 +408,7 @@
 				13629995885EEE5A1E3DBA1C /* SnapEditorView.swift in Sources */,
 				3BD84FBFA4F7E5A10E51AC97 /* SnapsService.swift in Sources */,
 				10ED59C0BD31D68D5CD6ED7E /* SnapsSettingsView.swift in Sources */,
+				3ABB94F9908EF3643532328F /* VictoryGestureDetector.swift in Sources */,
 				D31D8664A2825E7C5891DC9B /* WindowMaskSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,14 +420,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EEE43096F2D1A0E0374A9162 /* Dev.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = YZFSC6CZ7H;
 				INFOPLIST_FILE = Sources/HandMirror/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Mirror Dev";
 			};
 			name = Debug;
 		};
@@ -505,14 +530,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CEB2F09792858B2061077B8C /* Dist.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = YZFSC6CZ7H;
 				INFOPLIST_FILE = Sources/HandMirror/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "MIrror Dist";
 			};
 			name = Release;
 		};

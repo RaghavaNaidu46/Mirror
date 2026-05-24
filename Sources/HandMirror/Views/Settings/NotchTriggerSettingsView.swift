@@ -2,6 +2,8 @@ import SwiftUI
 
 struct NotchTriggerSettingsView: View {
     @ObservedObject private var preferences = Preferences.shared
+    @EnvironmentObject private var pro: Pro
+    @EnvironmentObject private var appState: AppState
 
     var body: some View {
         SettingsForm {
@@ -12,14 +14,14 @@ struct NotchTriggerSettingsView: View {
             .listRowBackground(Color.clear)
 
             Section {
-                Toggle(isOn: $preferences.notchTriggerEnabled) {
+                Toggle(isOn: pro.gatedBinding($preferences.notchTriggerEnabled, freeValue: false, onLocked: { appState.showPaywall() })) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Enable Notch Trigger")
                         Text("Click the area behind the built-in camera to trigger HandMirror")
                             .font(.caption).foregroundStyle(.secondary)
                     }
                 }
-                Toggle(isOn: $preferences.hideMenuBarIconOnNotch) {
+                Toggle(isOn: pro.gatedBinding($preferences.hideMenuBarIconOnNotch, freeValue: false, onLocked: { appState.showPaywall() })) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Hide menu bar icon")
                         Text("When a display with a notch is available, hide the icon in the Menu bar.")

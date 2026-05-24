@@ -19,11 +19,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         observePreferences()
         syncNotchTrigger()
         syncMenuBarIconVisibility()
+        wireVictoryAutoSnap()
 
         if appState.preferences.onboardingComplete {
-            appState.cameraManager.requestAccessAndStart()
+            // Don't start the camera here — that flips the green privacy
+            // indicator on while the user hasn't actually asked to see the
+            // mirror yet. The first popover open will start it lazily.
+            maybeShowFirstLaunchHint()
         } else {
             showOnboarding()
+        }
+    }
+
+    private func maybeShowFirstLaunchHint() {
+        // Shown every launch (post-onboarding) so the user is always reminded
+        // where the app lives — not just on first install.
+        // Defer a beat so the status item is laid out before we anchor to it.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+            self?.menuBarController?.showFirstLaunchHint()
         }
     }
 
@@ -55,11 +68,57 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         appState.cameraManager.applyCenterStage()
     }
 
+    /// AVCapture's `.balloons` reaction is what the V-sign / peace hand
+    /// gesture maps to in macOS Sonoma+. When the system fires that, start a
+    /// 3-second countdown on the mirror — then take the snap. The countdown
+    /// gives the user time to pose and lets the balloon animation start to
+    /// settle before capture. Only runs when the user is Pro (Snaps is a Plus
+    /// feature) and the mirror is currently visible.
+    private func wireVictoryAutoSnap() {
+        appState.cameraManager.onVictoryReaction = { [weak self] in
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                guard self.appState.pro.canUsePlus else { return }
+                guard self.appState.activeMirrorWindow != nil else { return }
+                self.startVictoryCountdown()
+            }
+        }
+    }
+
+    @MainActor
+    private func startVictoryCountdown() {
+        // Already counting down or an editor is up — ignore the new trigger.
+        guard appState.snapCountdown == nil else { return }
+        guard appState.snapPreview == nil else { return }
+        tickCountdown(from: 3)
+    }
+
+    @MainActor
+    private func tickCountdown(from value: Int) {
+        appState.snapCountdown = value
+        if value <= 0 {
+            appState.snapCountdown = nil
+            appState.snaps.takeSnap()
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            guard let self else { return }
+            // Bail if the mirror was dismissed mid-countdown.
+            guard self.appState.activeMirrorWindow != nil else {
+                self.appState.snapCountdown = nil
+                return
+            }
+            self.tickCountdown(from: value - 1)
+        }
+    }
+
     func showOnboarding() {
         if onboardingController == nil {
             onboardingController = OnboardingWindowController(appState: appState) { [weak self] in
                 self?.onboardingController = nil
-                self?.appState.cameraManager.requestAccessAndStart()
+                // Don't start the camera here — same reasoning as launch.
+                // First popover open will request access + start.
+                self?.maybeShowFirstLaunchHint()
             }
         }
         onboardingController?.showWindow(nil)

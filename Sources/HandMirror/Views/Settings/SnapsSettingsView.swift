@@ -2,6 +2,8 @@ import SwiftUI
 
 struct SnapsSettingsView: View {
     @ObservedObject private var preferences = Preferences.shared
+    @EnvironmentObject private var pro: Pro
+    @EnvironmentObject private var appState: AppState
 
     var body: some View {
         SettingsForm {
@@ -10,7 +12,7 @@ struct SnapsSettingsView: View {
                 .listRowBackground(Color.clear)
 
             Section {
-                Toggle(isOn: $preferences.snapsEnabled) {
+                Toggle(isOn: pro.gatedBinding($preferences.snapsEnabled, freeValue: false, onLocked: { appState.showPaywall() })) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Enable Snaps")
                         HStack(spacing: 4) {

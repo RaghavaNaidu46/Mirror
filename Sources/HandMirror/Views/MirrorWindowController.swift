@@ -35,6 +35,7 @@ final class MirrorWindowController: NSWindowController, NSWindowDelegate {
         let root = DetachedMirrorView(onClose: { [weak window] in window?.close() })
             .environmentObject(appState)
             .environmentObject(appState.preferences)
+            .environmentObject(appState.pro)
         window.contentView = NSHostingView(rootView: root)
 
         smartWindow.bind(to: window)

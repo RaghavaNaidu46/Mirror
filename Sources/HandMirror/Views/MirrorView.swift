@@ -126,11 +126,17 @@ private struct MirrorBody: View {
                     .animation(.easeInOut(duration: 0.15), value: isHovering)
             }
 
+            if let countdown = appState.snapCountdown, !appState.isCapturingSnap {
+                countdownOverlay(value: countdown)
+                    .transition(.opacity)
+            }
+
             if snapSavedShown {
                 savedPill
                     .transition(.opacity.combined(with: .scale))
             }
         }
+        .animation(.easeOut(duration: 0.2), value: appState.snapCountdown)
         .frame(width: preferences.currentMirrorSize.width,
                height: preferences.currentMirrorSize.height)
         .background(Color.black)
@@ -264,6 +270,24 @@ private struct MirrorBody: View {
         }
         hideReactionsTask = task
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: task)
+    }
+
+    private func countdownOverlay(value: Int) -> some View {
+        // Scale the digit with the window so it stays readable in both the
+        // small popover and an expanded detached window. Keyed by `value` so
+        // SwiftUI runs a fresh scale/opacity transition on each tick instead
+        // of crossfading.
+        let diameter = min(preferences.currentMirrorSize.width,
+                           preferences.currentMirrorSize.height) * 0.5
+        return Text("\(max(value, 1))")
+            .font(.system(size: diameter * 0.55, weight: .bold, design: .rounded))
+            .foregroundStyle(.white)
+            .frame(width: diameter, height: diameter)
+            .background(.black.opacity(0.45), in: Circle())
+            .shadow(color: .black.opacity(0.35), radius: 10, x: 0, y: 4)
+            .id(value)
+            .transition(.scale(scale: 1.4).combined(with: .opacity))
+            .animation(.easeOut(duration: 0.25), value: value)
     }
 
     private var savedPill: some View {

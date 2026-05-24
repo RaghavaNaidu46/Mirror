@@ -58,23 +58,21 @@ targets:
         NSCameraUsageDescription: "HandMirror uses the camera to show a live preview so you can check your appearance before video calls."
         NSMicrophoneUsageDescription: "HandMirror uses the microphone to display live input levels for the Mic Check feature."
         NSPrincipalClass: NSApplication
-        LSEnvironment:
-          MTL_DEBUG_LAYER: "0"
-          MTL_DEBUG_LAYER_ERROR_MODE: "nslog"
-          MTL_HUD_ENABLED: "0"
 
-# The Metal API validation layer raises a false-positive `didModifyRange:` assertion
-# on Apple Silicon when AVCapture reactions render into the preview layer (the
-# reactions compositor calls didModifyRange on a Shared-mode buffer, which is a
-# no-op on unified memory but trips the validator). Use the Release config for
-# the Run scheme so the validator never loads.
+# Run uses Debug (Mirror Dev profile, signs on this Mac); Archive uses
+# Release (MIrror Dist STORE profile, for App Store upload).
+#
+# The Metal API validation layer raises a false-positive `didModifyRange:`
+# assertion on Apple Silicon when AVCapture reactions render into the preview
+# layer. Both the scheme env vars and the xcscheme attribute (set by regen.sh)
+# disable the validator so reactions work even in Debug builds.
 schemes:
   HandMirror:
     build:
       targets:
         HandMirror: all
     run:
-      config: Release
+      config: Debug
       environmentVariables:
         - variable: MTL_DEBUG_LAYER
           value: "0"

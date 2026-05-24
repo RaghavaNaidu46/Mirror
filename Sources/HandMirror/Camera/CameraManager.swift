@@ -18,10 +18,30 @@ final class CameraManager: NSObject, ObservableObject {
     private let sessionQueue = DispatchQueue(label: "com.handmirror.session")
     private var deviceInput: AVCaptureDeviceInput?
     private var observers: [NSObjectProtocol] = []
+    private var reactionsObservation: NSKeyValueObservation?
+    private var seenReactions = Set<TimeInterval>()
+
+    /// Vision-based V-sign detector — runs on frames piped through
+    /// `videoDataOutput`. The system's gesture-driven `.balloons` reaction is
+    /// unreliable (it requires Reactions + Gestures to be on in Control
+    /// Center), so we do the detection ourselves.
+    private let victoryDetector = VictoryGestureDetector()
+    private let videoDataOutput = AVCaptureVideoDataOutput()
+    private var didAddVideoOutput = false
+
+    /// Called on the main queue when the system fires a Victory reaction (the
+    /// peace-sign hand gesture, which AVCapture surfaces as `.balloons`).
+    /// Wired up in AppDelegate to take an automatic snap.
+    var onVictoryReaction: (() -> Void)?
 
     override init() {
         super.init()
         session.sessionPreset = .high
+        videoDataOutput.alwaysDiscardsLateVideoFrames = true
+        videoDataOutput.setSampleBufferDelegate(victoryDetector, queue: victoryDetector.processingQueue)
+        victoryDetector.onVictoryDetected = { [weak self] in
+            self?.onVictoryReaction?()
+        }
         refreshDevices()
         registerForDeviceChanges()
     }
@@ -135,10 +155,40 @@ final class CameraManager: NSObject, ObservableObject {
             } catch {
                 NSLog("CameraManager: failed to create input — \(error.localizedDescription)")
             }
+            if !self.didAddVideoOutput, self.session.canAddOutput(self.videoDataOutput) {
+                self.session.addOutput(self.videoDataOutput)
+                self.didAddVideoOutput = true
+            }
             self.session.commitConfiguration()
             DispatchQueue.main.async {
                 self.currentDevice = device
                 self.applyCenterStage()
+                self.observeReactions(on: device)
+            }
+        }
+    }
+
+    /// Observe `reactionEffectsInProgress` on the active device so we can
+    /// react to gesture-triggered reactions. We track each reaction by its
+    /// startTime to avoid firing the callback repeatedly while the same
+    /// effect lingers in the array.
+    private func observeReactions(on device: AVCaptureDevice) {
+        reactionsObservation?.invalidate()
+        reactionsObservation = device.observe(\.reactionEffectsInProgress, options: [.new]) { [weak self] _, change in
+            guard let self, let effects = change.newValue else { return }
+
+            // Reap stale entries that are no longer in-progress so we'll fire
+            // again the next time the same reaction is performed.
+            let liveKeys = Set(effects.map { $0.startTime.seconds })
+            self.seenReactions = self.seenReactions.intersection(liveKeys)
+
+            for effect in effects {
+                let key = effect.startTime.seconds
+                if self.seenReactions.contains(key) { continue }
+                self.seenReactions.insert(key)
+                if effect.reactionType == .balloons {
+                    DispatchQueue.main.async { self.onVictoryReaction?() }
+                }
             }
         }
     }

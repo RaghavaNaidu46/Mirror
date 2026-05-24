@@ -19,6 +19,7 @@ struct HandMirrorApp: App {
         Settings {
             SettingsRoot()
                 .environmentObject(appDelegate.appState)
+                .environmentObject(appDelegate.appState.pro)
                 .captureOpenSettings()
         }
     }
