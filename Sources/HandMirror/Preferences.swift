@@ -22,7 +22,6 @@ final class Preferences: ObservableObject {
 
     @Published var menuBarIconName: String       { didSet { defaults.set(menuBarIconName, forKey: K.menuBarIconName) } }
     @Published var showInDock: Bool              { didSet { defaults.set(showInDock, forKey: K.showInDock) } }
-    @Published var appIconName: String           { didSet { defaults.set(appIconName, forKey: K.appIconName) } }
 
     @Published var maskStyle: String             { didSet { defaults.set(maskStyle, forKey: K.maskStyle) } }
     @Published var maskZoom: Double              { didSet { defaults.set(maskZoom, forKey: K.maskZoom) } }
@@ -57,7 +56,6 @@ final class Preferences: ObservableObject {
             K.windowSize: 220.0,
             K.alwaysOnTop: true,
             K.menuBarIconName: MenuBarIcon.defaultIcon.rawValue,
-            K.appIconName: AppIconChoice.defaultIcon.rawValue,
             K.maskStyle: MaskStyle.defaultChrome.rawValue,
             K.maskZoom: 1.0,
             K.maskRotation: 0.0,
@@ -78,7 +76,6 @@ final class Preferences: ObservableObject {
 
         menuBarIconName = defaults.string(forKey: K.menuBarIconName) ?? MenuBarIcon.defaultIcon.rawValue
         showInDock = defaults.bool(forKey: K.showInDock)
-        appIconName = defaults.string(forKey: K.appIconName) ?? AppIconChoice.defaultIcon.rawValue
 
         maskStyle = defaults.string(forKey: K.maskStyle) ?? MaskStyle.defaultChrome.rawValue
         maskZoom = defaults.double(forKey: K.maskZoom)
@@ -127,7 +124,6 @@ final class Preferences: ObservableObject {
         static let onboardingComplete = "onboardingComplete"
         static let menuBarIconName = "menuBarIconName"
         static let showInDock = "showInDock"
-        static let appIconName = "appIconName"
         static let maskStyle = "maskStyle"
         static let maskZoom = "maskZoom"
         static let maskRotation = "maskRotation"
@@ -205,17 +201,3 @@ enum MenuBarIcon: String, CaseIterable, Identifiable {
     }
 }
 
-enum AppIconChoice: String, CaseIterable, Identifiable {
-    case defaultIcon, plus, classic, youmoji, bigSur, og
-    var id: String { rawValue }
-    var displayName: String {
-        switch self {
-        case .defaultIcon: return "Default"
-        case .plus:        return "Plus"
-        case .classic:     return "Classic"
-        case .youmoji:     return "Youmoji"
-        case .bigSur:      return "BigSur"
-        case .og:          return "OG"
-        }
-    }
-}

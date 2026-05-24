@@ -13,16 +13,29 @@ final class SettingsOpener {
     static let shared = SettingsOpener()
     var action: (() -> Void)?
 
-    /// Always dispatches to main — both NSMenu actions and SwiftUI render passes
-    /// are on the main thread, but this keeps the contract explicit.
+    /// Opens the Settings scene reliably. Both paths run — the captured
+    /// `openSettings` closure (set by `SettingsLink`/`@Environment` in any
+    /// rendered SwiftUI view) plus the responder-chain selector that
+    /// `SettingsLink` ultimately invokes. If the captured closure has been
+    /// invalidated (e.g. the SwiftUI surface that owned it was torn down),
+    /// the selector path still opens the window.
     func open() {
         DispatchQueue.main.async { [weak self] in
             NSApp.activate(ignoringOtherApps: true)
-            if let action = self?.action {
-                action()
-            } else {
-                // Fallback before the SwiftUI environment has been captured.
-                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+            self?.action?()
+            NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+
+            // Belt-and-braces: a beat later, find the Settings window and
+            // bring it to the front explicitly. SwiftUI's open-settings
+            // action sometimes leaves the window key-but-buried behind a
+            // newly-activated app.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+                for window in NSApp.windows
+                where window.title.lowercased().contains("setting")
+                   || window.title.lowercased().contains("preference") {
+                    window.makeKeyAndOrderFront(nil)
+                    break
+                }
             }
         }
     }

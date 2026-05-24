@@ -6,7 +6,6 @@ struct AlternativeIconsSettingsView: View {
     @EnvironmentObject var appState: AppState
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 18), count: 5)
-    private let appIconColumns = Array(repeating: GridItem(.flexible(), spacing: 18), count: 3)
 
     var body: some View {
         SettingsForm {
@@ -35,27 +34,7 @@ struct AlternativeIconsSettingsView: View {
                     Text("Show icon in the Dock")
                 }
             }
-
-            Section("App icon") {
-                LazyVGrid(columns: appIconColumns, spacing: 18) {
-                    ForEach(AppIconChoice.allCases) { choice in
-                        AppIconTile(choice: choice,
-                                    selected: preferences.appIconName == choice.rawValue)
-                            .onTapGesture {
-                                preferences.appIconName = choice.rawValue
-                                applyAppIcon(choice)
-                            }
-                    }
-                }
-                .padding(.vertical, 8)
-            }
         }
-    }
-
-    private func applyAppIcon(_ choice: AppIconChoice) {
-        // We don't ship icon assets yet — when we do, swap the image here.
-        // For now this is a no-op placeholder; visual selection still persists.
-        _ = choice
     }
 }
 
@@ -74,29 +53,6 @@ private struct MenuBarIconTile: View {
                         .stroke(selected ? Color.accentColor : .clear, lineWidth: 2)
                 )
             Text(icon.displayName).font(.caption)
-        }
-    }
-}
-
-private struct AppIconTile: View {
-    let choice: AppIconChoice
-    let selected: Bool
-    var body: some View {
-        VStack(spacing: 6) {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(LinearGradient(colors: [.red.opacity(0.7), .orange.opacity(0.5)],
-                                     startPoint: .topLeading, endPoint: .bottomTrailing))
-                .frame(width: 80, height: 80)
-                .overlay(
-                    Image(systemName: "camera.fill")
-                        .font(.system(size: 30))
-                        .foregroundStyle(.white)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(selected ? Color.accentColor : .clear, lineWidth: 3)
-                )
-            Text(choice.displayName).font(.caption)
         }
     }
 }
