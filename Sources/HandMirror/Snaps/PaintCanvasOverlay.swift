@@ -79,6 +79,21 @@ final class PaintNSView: NSView {
         onEnd()
     }
 
+    /// Register the pencil as the *native* cursor for this rect with AppKit's
+    /// cursor-rect manager. Without this, fast cursor movement into the
+    /// polaroid briefly shows the arrow (system default) between events
+    /// because the tracking-area `mouseEntered`/`mouseMoved` callbacks
+    /// haven't caught up yet.
+    override func resetCursorRects() {
+        discardCursorRects()
+        addCursorRect(bounds, cursor: .pencilTip)
+    }
+
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        window?.invalidateCursorRects(for: self)
+    }
+
     private func forward(_ event: NSEvent) {
         onPoint(convert(event.locationInWindow, from: nil))
     }

@@ -136,7 +136,22 @@ private struct MirrorBody: View {
         .background(Color.black)
         .clipShape(currentShape)
         .contentShape(currentShape)
-        .onHover { isHovering = $0 }
+        .onHover { hovering in
+            isHovering = hovering
+            // Skip while the snap editor is active — PaintCanvasOverlay owns
+            // the cursor (pencil) over the polaroid, and racing it from here
+            // makes the cursor blink during layout transitions.
+            if hovering && appState.snapPreview == nil { NSCursor.arrow.set() }
+        }
+        .onContinuousHover { phase in
+            // Fires on every cursor-position update while the mouse is over
+            // the mirror — keeps the arrow cursor sticky even when AppKit
+            // tries to inherit something else (e.g. the I-beam from a text
+            // editor behind the popover). Same snap-editor exception as above.
+            if case .active = phase, appState.snapPreview == nil {
+                NSCursor.arrow.set()
+            }
+        }
     }
 
     private var shouldShowMicMeter: Bool {

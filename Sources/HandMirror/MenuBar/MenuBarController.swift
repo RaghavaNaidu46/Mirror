@@ -9,6 +9,8 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
     private let popover: NSPopover
     private var detachedWindowController: MirrorWindowController?
     private var eventMonitor: Any?
+    private var popoverCursorMonitor: Any?
+    private var globalCursorMonitor: Any?
 
     init(appState: AppState) {
         self.appState = appState
@@ -152,10 +154,16 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         if appState.isDetached { return }
         appState.cameraManager.start()
         popover.contentSize = appState.preferences.currentMirrorSize
+        // Activate the app so the popover's window becomes key and claims
+        // cursor authority — otherwise the cursor inherits whatever the
+        // previously-active app (Xcode, a text editor) last set.
+        NSApp.activate(ignoringOtherApps: true)
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+        popover.contentViewController?.view.window?.makeKey()
         appState.isMirrorOpen = true
         appState.activeMirrorWindow = popover.contentViewController?.view.window
         startEventMonitor()
+        startPopoverCursorMonitors()
     }
 
     func popoverDidClose(_ notification: Notification) {
@@ -165,8 +173,57 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         // — we don't want it lingering when they reopen the mirror.
         appState.snapPreview = nil
         stopEventMonitor()
+        stopPopoverCursorMonitors()
         if !appState.isDetached {
             appState.cameraManager.stop()
+        }
+    }
+
+    // MARK: - Cursor enforcement
+    //
+    // NSPopover's window doesn't fully claim cursor authority — the cursor
+    // sometimes inherits whatever the window underneath last set (e.g. an
+    // I-beam from Xcode's source editor). Tracking areas and SwiftUI hover
+    // modifiers aren't consistent enough on their own. So while the popover
+    // is open, we install both a local and a global mouse-moved monitor and
+    // force `NSCursor.arrow.set()` on every event that lands within the
+    // popover window's frame.
+
+    private func startPopoverCursorMonitors() {
+        stopPopoverCursorMonitors()
+
+        let handler: (NSEvent) -> Void = { [weak self] _ in
+            guard let self,
+                  let window = self.popover.contentViewController?.view.window,
+                  window.isVisible
+            else { return }
+            // While the snap editor is up, `PaintCanvasOverlay` owns the
+            // cursor over the polaroid (pencil). Forcing arrow here would
+            // make the cursor flicker between pencil and arrow as the
+            // monitor fires for every mouse-move event.
+            if self.appState.snapPreview != nil { return }
+            if window.frame.contains(NSEvent.mouseLocation) {
+                NSCursor.arrow.set()
+            }
+        }
+
+        popoverCursorMonitor = NSEvent.addLocalMonitorForEvents(matching: .mouseMoved) { event in
+            handler(event)
+            return event
+        }
+        globalCursorMonitor = NSEvent.addGlobalMonitorForEvents(matching: .mouseMoved) { event in
+            handler(event)
+        }
+    }
+
+    private func stopPopoverCursorMonitors() {
+        if let monitor = popoverCursorMonitor {
+            NSEvent.removeMonitor(monitor)
+            popoverCursorMonitor = nil
+        }
+        if let monitor = globalCursorMonitor {
+            NSEvent.removeMonitor(monitor)
+            globalCursorMonitor = nil
         }
     }
 
