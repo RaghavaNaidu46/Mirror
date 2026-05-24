@@ -107,7 +107,7 @@ final class SnapsService {
     }
 
     private func save(_ data: Data, preferences: Preferences) {
-        let filename = "Hand Mirror Snap \(filenameTimestamp()).png"
+        let filename = "HandMirror Snap \(filenameTimestamp()).png"
 
         if preferences.snapsAutoSave, !preferences.snapsSaveLocation.isEmpty {
             let url = URL(fileURLWithPath: preferences.snapsSaveLocation).appendingPathComponent(filename)

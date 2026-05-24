@@ -52,7 +52,7 @@ struct OnboardingView: View {
             Image(systemName: "camera.fill")
                 .font(.system(size: 64))
                 .foregroundStyle(.red)
-            Text("Welcome to Hand Mirror").font(.title).bold()
+            Text("Welcome to HandMirror").font(.title).bold()
             Text("A quick way to check your camera before any video call. Lives in your menu bar — one click and you're set.")
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
@@ -101,7 +101,7 @@ struct OnboardingView: View {
     private var cameraStatusMessage: String {
         switch cameraStatus {
         case .authorized:  return "Camera access granted. You're all set."
-        case .notDetermined: return "Hand Mirror needs to see your camera to show you a preview. Click below to grant access."
+        case .notDetermined: return "HandMirror needs to see your camera to show you a preview. Click below to grant access."
         case .denied:      return "Camera access was denied. Enable it in System Settings → Privacy & Security → Camera, then return here."
         case .restricted:  return "Camera access is restricted on this Mac."
         @unknown default:  return "Unknown camera permission state."

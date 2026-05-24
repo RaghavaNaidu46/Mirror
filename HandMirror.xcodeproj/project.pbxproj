@@ -22,6 +22,7 @@
 		35E12BE0562629453C9CC1C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60A31EBA1396EF72262EF6 /* AppDelegate.swift */; };
 		399DF5D9465FEFAFDCE9F70E /* OnboardingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E048FC4EF7249A07790E9 /* OnboardingWindowController.swift */; };
 		3BD84FBFA4F7E5A10E51AC97 /* SnapsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6727262EDAE7A2DD2D30456D /* SnapsService.swift */; };
+		486E151CF55531002BB2C761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 767E7ACAFBF8B2D6BEDF4B63 /* Assets.xcassets */; };
 		49B19ECD355C122B29C8B47F /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2048EF9ADBA8450C0397B70C /* MenuBarController.swift */; };
 		57249CA7EDFE79E465E851FB /* MicMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC11118D8DE710B4685171A /* MicMeterView.swift */; };
 		62B2AC72A9EA6E9F37EDDB63 /* MicCheckSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B08B624C412C275B444012 /* MicCheckSettingsView.swift */; };
@@ -54,6 +55,7 @@
 		317038143DCBE68FDB30F351 /* AlternativeIconsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeIconsSettingsView.swift; sourceTree = "<group>"; };
 		6727262EDAE7A2DD2D30456D /* SnapsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsService.swift; sourceTree = "<group>"; };
 		6AFC129820F8326027BD7642 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		767E7ACAFBF8B2D6BEDF4B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DC17F589DFC989482CD1AE5 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		831E048FC4EF7249A07790E9 /* OnboardingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWindowController.swift; sourceTree = "<group>"; };
 		83C3F721BAC9C70807F086A7 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -63,12 +65,14 @@
 		96C37355054B89ED44E6E716 /* DetachedMirrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetachedMirrorView.swift; sourceTree = "<group>"; };
 		9B6A8723BB1C910AA0D23641 /* NotchTriggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchTriggerService.swift; sourceTree = "<group>"; };
 		9E60A31EBA1396EF72262EF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A86ADADE233FA680388C9CA7 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		B09D76D5B37E8CDBE57F0C27 /* MicMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicMonitor.swift; sourceTree = "<group>"; };
 		BAF4046FF418BB455498754A /* ReactionsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsBar.swift; sourceTree = "<group>"; };
 		BBBA4E25C1DA079BF84C593B /* PencilCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilCursor.swift; sourceTree = "<group>"; };
 		BF433C1F0A83693AC7F9EEBD /* PaintCanvasOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintCanvasOverlay.swift; sourceTree = "<group>"; };
 		C60C2D3FDBDFC011A1D66479 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		CE9FCC2023CD75BAFF92B473 /* NotchTriggerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchTriggerSettingsView.swift; sourceTree = "<group>"; };
+		CEB2F09792858B2061077B8C /* Dist.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Dist.xcconfig; sourceTree = "<group>"; };
 		D07388ECB7D287E707B915BF /* SmartWindowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartWindowService.swift; sourceTree = "<group>"; };
 		D93F92DCA345B029C5B098DE /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
 		D9CEEE040BDA40A01FB672D6 /* MirrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorView.swift; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 		E1C774920FEDE9AB99B4B9B9 /* SnapsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsSettingsView.swift; sourceTree = "<group>"; };
 		E8E569A09C27D82F8AF0AF3F /* AboutSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSettingsView.swift; sourceTree = "<group>"; };
 		EDC22992404BE4D47E16280F /* SnapEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapEditorView.swift; sourceTree = "<group>"; };
+		EEE43096F2D1A0E0374A9162 /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Dev.xcconfig; sourceTree = "<group>"; };
 		F628CA1F7B5DCF98588E89A8 /* MirrorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorWindowController.swift; sourceTree = "<group>"; };
 		FADC41CD1BE6C48C78E6DE96 /* SettingsOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOpener.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +102,7 @@
 		12AC697DCECE7618216CDE40 = {
 			isa = PBXGroup;
 			children = (
+				81CDD3E587B72D3E9DF6E153 /* Config */,
 				2C1D85472905771968F7888F /* Sources */,
 				94A68F00418727FF2833F5B9 /* Products */,
 			);
@@ -119,6 +125,14 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		4D1BE73A22C5490569AAA237 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				767E7ACAFBF8B2D6BEDF4B63 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		54DAE5CB3197178E693CE334 /* HandMirror */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +146,7 @@
 				A0F53F7ADB02EEA0D86EA08B /* NotchTrigger */,
 				F79A933A213A6411F637423E /* Onboarding */,
 				B6FAD4B0472E6AE36758F9FF /* Reactions */,
+				4D1BE73A22C5490569AAA237 /* Resources */,
 				AF6B20ABB09004B8F8A1E64D /* Shortcuts */,
 				A3DD2E29D664B709B48F07D0 /* SmartWindow */,
 				7DDD3800BC7DF590BDE53681 /* Snaps */,
@@ -159,6 +174,16 @@
 				6727262EDAE7A2DD2D30456D /* SnapsService.swift */,
 			);
 			path = Snaps;
+			sourceTree = "<group>";
+		};
+		81CDD3E587B72D3E9DF6E153 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				A86ADADE233FA680388C9CA7 /* Base.xcconfig */,
+				EEE43096F2D1A0E0374A9162 /* Dev.xcconfig */,
+				CEB2F09792858B2061077B8C /* Dist.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		8BCA643E1D919FA5F8607845 /* Settings */ = {
@@ -255,6 +280,7 @@
 			buildConfigurationList = 9148EC702B24E893FA062F9D /* Build configuration list for PBXNativeTarget "HandMirror" */;
 			buildPhases = (
 				E9E9D26385A5C7C45DC10186 /* Sources */,
+				DD266297DC0EB3BE0A5E25CC /* Resources */,
 				4BEA6766B5E62920B1C38908 /* Frameworks */,
 			);
 			buildRules = (
@@ -279,7 +305,8 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					81C6C8A932BA143C118DC9FE = {
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = YZFSC6CZ7H;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -304,6 +331,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD266297DC0EB3BE0A5E25CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				486E151CF55531002BB2C761 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E9E9D26385A5C7C45DC10186 /* Sources */ = {
@@ -352,23 +390,24 @@
 /* Begin XCBuildConfiguration section */
 		1AAFE1FA68B78061D557371A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEE43096F2D1A0E0374A9162 /* Dev.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = YZFSC6CZ7H;
 				INFOPLIST_FILE = Sources/HandMirror/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				SDKROOT = macosx;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Mirror Dev";
 			};
 			name = Debug;
 		};
 		2A4382D8B67833CE7465A2C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEE43096F2D1A0E0374A9162 /* Dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -398,52 +437,27 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = Sources/HandMirror/Resources/HandMirror.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_HARDENED_RUNTIME = NO;
-				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"DEBUG=1",
-				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Sources/HandMirror/Resources/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.handmirror.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
-				SWIFT_VERSION = 5.10;
 			};
 			name = Debug;
 		};
 		B44D9535A1D513FC98C4600B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEB2F09792858B2061077B8C /* Dist.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -473,15 +487,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = Sources/HandMirror/Resources/HandMirror.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_HARDENED_RUNTIME = NO;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -491,33 +496,23 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Sources/HandMirror/Resources/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.handmirror.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
-				SWIFT_VERSION = 5.10;
 			};
 			name = Release;
 		};
 		D3F9AAEC51CAC7F2C74CFEAA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEB2F09792858B2061077B8C /* Dist.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = YZFSC6CZ7H;
 				INFOPLIST_FILE = Sources/HandMirror/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				SDKROOT = macosx;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "MIrror Dist";
 			};
 			name = Release;
 		};

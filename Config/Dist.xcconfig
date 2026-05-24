@@ -1,0 +1,20 @@
+#include "Base.xcconfig"
+
+// Code-signing identity + provisioning profile for distribution.
+// Use `Apple Distribution` for Mac App Store submissions; switch to
+// `Developer ID Application` for direct (notarised, non-MAS) distribution.
+// The profile name must match one installed on this Mac.
+CODE_SIGN_IDENTITY[sdk=macosx*]              = Apple Distribution
+PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]  = MIrror Dist
+
+// Optimisation
+SWIFT_OPTIMIZATION_LEVEL             = -O
+SWIFT_COMPILATION_MODE               = wholemodule
+COPY_PHASE_STRIP                     = NO
+
+// Diagnostics
+DEBUG_INFORMATION_FORMAT             = dwarf-with-dsym
+ENABLE_NS_ASSERTIONS                 = NO
+
+// Distribution packaging validation
+VALIDATE_PRODUCT                     = YES

@@ -1,0 +1,48 @@
+// Single source of truth for everything that doesn't vary by Dev/Dist.
+// Configuration-specific values live in Dev.xcconfig and Dist.xcconfig and
+// `#include` this file.
+
+// MARK: - App identity
+
+PRODUCT_NAME               = HandMirror
+PRODUCT_BUNDLE_IDENTIFIER  = com.rbchronicles.hand.mirror
+
+INFOPLIST_KEY_CFBundleDisplayName = HandMirror - Camera
+
+// MARK: - Versioning
+
+MARKETING_VERSION          = 1.0
+CURRENT_PROJECT_VERSION    = 10.1
+SWIFT_VERSION              = 5.10
+
+// MARK: - Info.plist
+
+GENERATE_INFOPLIST_FILE                  = NO
+INFOPLIST_FILE                           = Sources/HandMirror/Resources/Info.plist
+INFOPLIST_KEY_NSHumanReadableCopyright   = Copyright © 2026 Raghava Dokala. All rights reserved.
+
+// MARK: - Deployment / platform
+
+SDKROOT                       = macosx
+MACOSX_DEPLOYMENT_TARGET      = 14.0
+SUPPORTED_PLATFORMS           = macosx
+
+// MARK: - Assets
+
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+COMBINE_HIDPI_IMAGES               = YES
+
+// MARK: - Code signing (shared defaults; per-config identity in Dev/Dist)
+
+CODE_SIGN_STYLE                = Manual
+DEVELOPMENT_TEAM               = YZFSC6CZ7H
+CODE_SIGN_ENTITLEMENTS         = Sources/HandMirror/Resources/HandMirror.entitlements
+ENABLE_HARDENED_RUNTIME        = YES
+
+// MARK: - Swift / SwiftUI
+
+ENABLE_PREVIEWS                                 = YES
+SWIFT_TREAT_WARNINGS_AS_ERRORS                  = NO
+SWIFT_EMIT_LOC_STRINGS                          = YES
+SWIFT_APPROACHABLE_CONCURRENCY                  = YES
+STRING_CATALOG_GENERATE_SYMBOLS                 = YES

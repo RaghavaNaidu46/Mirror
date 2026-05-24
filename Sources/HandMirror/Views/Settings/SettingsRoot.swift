@@ -1,8 +1,8 @@
 import SwiftUI
 
 /// Root of the Settings window. A two-pane sidebar layout that mirrors the
-/// reference Hand Mirror Plus settings: top group (General, About) plus a
-/// "Hand Mirror Plus" group for the premium features.
+/// reference HandMirror Plus settings: top group (General, About) plus a
+/// "HandMirror Plus" group for the premium features.
 struct SettingsRoot: View {
     @EnvironmentObject var appState: AppState
     @State private var selection: SettingsTab = .general
@@ -26,7 +26,7 @@ struct SettingsRoot: View {
             ForEach(SettingsTab.topGroup) { tab in
                 row(for: tab)
             }
-            Section("Hand Mirror Plus") {
+            Section("HandMirror Plus") {
                 ForEach(SettingsTab.plusGroup) { tab in
                     row(for: tab)
                 }
@@ -79,7 +79,7 @@ struct SettingsRoot: View {
             HStack(spacing: 6) {
                 Image(systemName: "camera.fill")
                     .foregroundStyle(.red)
-                Text("Hand Mirror Plus").fontWeight(.semibold)
+                Text("HandMirror Plus").fontWeight(.semibold)
             }
             .padding(.horizontal, 12).padding(.vertical, 6)
             .background(Color.black.opacity(0.3), in: Capsule())

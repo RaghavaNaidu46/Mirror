@@ -15,7 +15,7 @@ struct ReactionsSettingsView: View {
                 Toggle(isOn: $preferences.reactionsTriggersVisible) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Show Reaction triggers")
-                        Text("Trigger the native macOS Reactions directly from Hand Mirror")
+                        Text("Trigger the native macOS Reactions directly from HandMirror")
                             .font(.caption).foregroundStyle(.secondary)
                     }
                 }

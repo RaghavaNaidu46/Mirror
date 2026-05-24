@@ -1,0 +1,20 @@
+#include "Base.xcconfig"
+
+// Code-signing identity + provisioning profile for local development.
+// The profile name must match a profile installed on this Mac (Xcode →
+// Settings → Accounts → Manage Profiles, or downloaded from
+// developer.apple.com → Profiles). Rename the value here if your profile
+// is named differently.
+CODE_SIGN_IDENTITY[sdk=macosx*]              = Apple Development
+PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]  = Mirror Dev
+
+// Optimisation / debug info
+SWIFT_OPTIMIZATION_LEVEL             = -Onone
+GCC_OPTIMIZATION_LEVEL               = 0
+DEBUG_INFORMATION_FORMAT             = dwarf
+ENABLE_TESTABILITY                   = YES
+ONLY_ACTIVE_ARCH                     = YES
+
+// Compilation flags
+SWIFT_ACTIVE_COMPILATION_CONDITIONS  = $(inherited) DEBUG
+GCC_PREPROCESSOR_DEFINITIONS         = $(inherited) DEBUG=1

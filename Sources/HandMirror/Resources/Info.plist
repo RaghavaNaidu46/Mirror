@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Hand Mirror</string>
+	<string>HandMirror - Camera</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,13 +13,15 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Hand Mirror</string>
+	<string>HandMirror</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
 	<key>LSEnvironment</key>
 	<dict>
 		<key>MTL_DEBUG_LAYER</key>
@@ -34,11 +36,11 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Hand Mirror uses the camera to show a live preview so you can check your appearance before video calls.</string>
+	<string>HandMirror uses the camera to show a live preview so you can check your appearance before video calls.</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Hand Mirror uses the microphone to display live input levels for the Mic Check feature.</string>
+	<string>HandMirror uses the microphone to display live input levels for the Mic Check feature.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

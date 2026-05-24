@@ -15,7 +15,7 @@ struct NotchTriggerSettingsView: View {
                 Toggle(isOn: $preferences.notchTriggerEnabled) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Enable Notch Trigger")
-                        Text("Click the area behind the built-in camera to trigger Hand Mirror")
+                        Text("Click the area behind the built-in camera to trigger HandMirror")
                             .font(.caption).foregroundStyle(.secondary)
                     }
                 }

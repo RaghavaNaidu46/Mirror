@@ -57,7 +57,7 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
     func refreshStatusItemIcon() {
         guard let button = statusItem.button else { return }
         let choice = MenuBarIcon(rawValue: appState.preferences.menuBarIconName) ?? .defaultIcon
-        let image = NSImage(systemSymbolName: choice.symbolName, accessibilityDescription: "Hand Mirror")
+        let image = NSImage(systemSymbolName: choice.symbolName, accessibilityDescription: "HandMirror")
         image?.isTemplate = true
         button.image = image
     }
@@ -269,11 +269,11 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         menu.addItem(withTitle: "Open Mirror", action: #selector(menuOpen), keyEquivalent: "").target = self
         menu.addItem(withTitle: "Detach Window", action: #selector(menuDetach), keyEquivalent: "").target = self
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Hand Mirror Plus…", action: #selector(menuPlus), keyEquivalent: "").target = self
+        menu.addItem(withTitle: "HandMirror Plus…", action: #selector(menuPlus), keyEquivalent: "").target = self
         menu.addItem(withTitle: "Settings…", action: #selector(menuSettings), keyEquivalent: ",").target = self
         menu.addItem(.separator())
         menu.addItem(withTitle: "Reset Onboarding", action: #selector(menuResetOnboarding), keyEquivalent: "").target = self
-        menu.addItem(withTitle: "Quit Hand Mirror", action: #selector(menuQuit), keyEquivalent: "q").target = self
+        menu.addItem(withTitle: "Quit HandMirror", action: #selector(menuQuit), keyEquivalent: "q").target = self
 
         statusItem.menu = menu
         statusItem.button?.performClick(nil)
