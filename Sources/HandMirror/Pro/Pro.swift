@@ -50,7 +50,7 @@ final class Pro: ObservableObject {
     /// is the source of truth — never flip it in a shipping build.
     static let mode: ProGateMode = {
         #if DEBUG
-        return .earlyAccess
+        return .trialOrPaywall
         #else
         return .trialOrPaywall
         #endif

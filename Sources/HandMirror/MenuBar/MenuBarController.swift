@@ -12,6 +12,13 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
     private var popoverCursorMonitor: Any?
     private var globalCursorMonitor: Any?
     private var firstLaunchHintPopover: NSPopover?
+    private var popoverDragMonitor: Any?
+    private var popoverDragOrigin: NSPoint?
+    private weak var manualDragWindow: NSWindow?
+    private var manualDragGrabOffset: NSPoint = .zero
+    private var manualDragLocalMonitor: Any?
+    private var manualDragGlobalMonitor: Any?
+    private var detachTrialTimer: DispatchWorkItem?
 
     init(appState: AppState) {
         self.appState = appState
@@ -158,6 +165,7 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         appState.isMirrorOpen = true
         appState.activeMirrorWindow = popover.contentViewController?.view.window
         startEventMonitor()
+        startPopoverDragMonitor()
     }
 
     private func toggleDetachedVisibility(_ controller: MirrorWindowController) {
@@ -186,6 +194,7 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         appState.activeMirrorWindow = popover.contentViewController?.view.window
         startEventMonitor()
         startPopoverCursorMonitors()
+        startPopoverDragMonitor()
     }
 
     func popoverDidClose(_ notification: Notification) {
@@ -196,6 +205,7 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         appState.snapPreview = nil
         stopEventMonitor()
         stopPopoverCursorMonitors()
+        stopPopoverDragMonitor()
         if !appState.isDetached {
             appState.cameraManager.stop()
         }
@@ -247,6 +257,208 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
             NSEvent.removeMonitor(monitor)
             globalCursorMonitor = nil
         }
+    }
+
+    // MARK: - Drag-to-detach
+    //
+    // When the user drags inside the popover past a small threshold, tear it
+    // off into the detached floating window seamlessly — close the popover,
+    // open the detached panel at the popover's location, and forward the
+    // ongoing drag to the new window via `performDrag(with:)` so the panel
+    // sticks to the cursor as if the popover itself became draggable. Same
+    // Pro gate as the explicit "Detach Window" menu item.
+
+    private func startPopoverDragMonitor() {
+        stopPopoverDragMonitor()
+        popoverDragMonitor = NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown, .leftMouseDragged, .leftMouseUp]) { [weak self] event in
+            guard let self,
+                  self.popover.isShown,
+                  let popoverWindow = self.popover.contentViewController?.view.window,
+                  event.window === popoverWindow
+            else { return event }
+
+            // Skip while the snap editor is open — drags there belong to the
+            // pencil/canvas, not to a detach gesture.
+            if self.appState.snapPreview != nil { return event }
+
+            switch event.type {
+            case .leftMouseDown:
+                self.popoverDragOrigin = NSEvent.mouseLocation
+            case .leftMouseDragged:
+                guard let origin = self.popoverDragOrigin else { break }
+                let now = NSEvent.mouseLocation
+                let distance = hypot(now.x - origin.x, now.y - origin.y)
+                if distance >= 6 {
+                    self.popoverDragOrigin = nil
+                    self.handlePopoverDragDetach(with: event, popoverWindow: popoverWindow)
+                    return nil
+                }
+            case .leftMouseUp:
+                self.popoverDragOrigin = nil
+            default:
+                break
+            }
+            return event
+        }
+    }
+
+    private func stopPopoverDragMonitor() {
+        if let monitor = popoverDragMonitor {
+            NSEvent.removeMonitor(monitor)
+            popoverDragMonitor = nil
+        }
+        popoverDragOrigin = nil
+    }
+
+    private func handlePopoverDragDetach(with event: NSEvent, popoverWindow: NSWindow) {
+        // Non-Pro users get a timed trial (see startDetachedTrialIfNeeded);
+        // the paywall only opens after the trial expires, never up front.
+
+        // The popover content sits at the bottom of the popover window (the
+        // arrow occupies the top strip). Take the content view's screen
+        // frame so the detached panel lands exactly where the content was.
+        let contentFrameInScreen: NSRect
+        if let contentView = popover.contentViewController?.view {
+            let inWindow = contentView.convert(contentView.bounds, to: nil)
+            contentFrameInScreen = popoverWindow.convertToScreen(inWindow)
+        } else {
+            contentFrameInScreen = popoverWindow.frame
+        }
+
+        // How far the cursor sits from the content's bottom-left right now —
+        // this offset is what we'll hold fixed for the rest of the drag, so
+        // the cursor stays on the same pixel of the window content as it did
+        // on the popover content.
+        let cursorScreen = NSEvent.mouseLocation
+        let grabOffset = NSPoint(
+            x: cursorScreen.x - contentFrameInScreen.minX,
+            y: cursorScreen.y - contentFrameInScreen.minY
+        )
+
+        // Lazy-create the detached window controller and place its window
+        // BEFORE showing — otherwise it flashes at its default origin first.
+        if detachedWindowController == nil {
+            detachedWindowController = MirrorWindowController(appState: appState) { [weak self] in
+                self?.detachedWindowController = nil
+                self?.stopManualWindowDrag()
+                self?.cancelDetachedTrial()
+            }
+        }
+        guard let detachedWindow = detachedWindowController?.window else { return }
+        detachedWindow.setFrame(contentFrameInScreen, display: false)
+
+        // Mark detached before closing so popoverDidClose doesn't stop the
+        // camera. Disable the popover's close animation for an instant swap.
+        appState.isDetached = true
+        let priorAnimates = popover.animates
+        popover.animates = false
+        popover.performClose(nil)
+        popover.animates = priorAnimates
+
+        appState.cameraManager.requestAccessAndStart()
+        detachedWindow.makeKeyAndOrderFront(nil)
+        appState.activeMirrorWindow = detachedWindow
+
+        // Take over the drag ourselves. `NSWindow.performDrag` can't bridge
+        // across the popover→panel window change reliably (the in-flight
+        // event belongs to the dead popover), so we move the window by hand
+        // on every mouse-moved / dragged event until the user lets go.
+        startManualWindowDrag(window: detachedWindow, grabOffset: grabOffset)
+
+        startDetachedTrialIfNeeded()
+    }
+
+    // MARK: - Detach trial
+    //
+    // Non-Pro users can use the detached window for a short preview before
+    // the paywall opens. First time is 30s, every subsequent time is 10s.
+    // The mirror surface shows a small countdown chip from `AppState`.
+
+    private func startDetachedTrialIfNeeded() {
+        guard !MainActor.assumeIsolated({ appState.pro.canUsePlus }) else { return }
+        // If a trial is already running (e.g., the user opened via menu then
+        // dragged the popover), don't restart the clock.
+        guard appState.detachTrialDeadline == nil else { return }
+
+        let duration: TimeInterval = appState.preferences.detachTrialActivated ? 10 : 30
+        appState.preferences.detachTrialActivated = true
+
+        let deadline = Date().addingTimeInterval(duration)
+        appState.detachTrialDeadline = deadline
+
+        let task = DispatchWorkItem { [weak self] in
+            self?.expireDetachedTrial()
+        }
+        detachTrialTimer = task
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: task)
+    }
+
+    private func expireDetachedTrial() {
+        detachTrialTimer = nil
+        appState.detachTrialDeadline = nil
+
+        // If the user upgraded mid-trial, leave the window open.
+        if MainActor.assumeIsolated({ appState.pro.canUsePlus }) { return }
+
+        detachedWindowController?.window?.close()
+        appState.cameraManager.stop()
+        Task { @MainActor [weak self] in self?.appState.showPaywall() }
+    }
+
+    private func cancelDetachedTrial() {
+        detachTrialTimer?.cancel()
+        detachTrialTimer = nil
+        appState.detachTrialDeadline = nil
+    }
+
+    // MARK: - Manual window drag
+
+    private func startManualWindowDrag(window: NSWindow, grabOffset: NSPoint) {
+        stopManualWindowDrag()
+        manualDragWindow = window
+        manualDragGrabOffset = grabOffset
+
+        // Local monitor catches events while the cursor is over our window.
+        manualDragLocalMonitor = NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDragged, .leftMouseUp]) { [weak self] event in
+            guard let self else { return event }
+            if event.type == .leftMouseUp {
+                self.stopManualWindowDrag()
+                return event
+            }
+            self.followCursor()
+            return nil
+        }
+        // Global monitor keeps the drag going if the cursor wanders off the
+        // window onto another app, and catches the eventual mouse-up there.
+        manualDragGlobalMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDragged, .leftMouseUp]) { [weak self] event in
+            guard let self else { return }
+            if event.type == .leftMouseUp {
+                self.stopManualWindowDrag()
+            } else {
+                self.followCursor()
+            }
+        }
+    }
+
+    private func followCursor() {
+        guard let win = manualDragWindow else { return }
+        let cursor = NSEvent.mouseLocation
+        win.setFrameOrigin(NSPoint(
+            x: cursor.x - manualDragGrabOffset.x,
+            y: cursor.y - manualDragGrabOffset.y
+        ))
+    }
+
+    private func stopManualWindowDrag() {
+        if let monitor = manualDragLocalMonitor {
+            NSEvent.removeMonitor(monitor)
+            manualDragLocalMonitor = nil
+        }
+        if let monitor = manualDragGlobalMonitor {
+            NSEvent.removeMonitor(monitor)
+            manualDragGlobalMonitor = nil
+        }
+        manualDragWindow = nil
     }
 
     // Close the popover when the user clicks outside of it.
@@ -309,11 +521,8 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         popover.performClose(nil)
         Task { @MainActor [weak self] in
             guard let self else { return }
-            if self.appState.pro.canUsePlus {
-                self.detachIntoWindow()
-            } else {
-                self.appState.showPaywall()
-            }
+            self.detachIntoWindow()
+            self.startDetachedTrialIfNeeded()
         }
     }
 
@@ -351,6 +560,8 @@ final class MenuBarController: NSObject, NSPopoverDelegate {
         if detachedWindowController == nil {
             detachedWindowController = MirrorWindowController(appState: appState) { [weak self] in
                 self?.detachedWindowController = nil
+                self?.stopManualWindowDrag()
+                self?.cancelDetachedTrial()
             }
         }
         appState.isDetached = true

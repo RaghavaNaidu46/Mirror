@@ -19,6 +19,9 @@ final class Preferences: ObservableObject {
     @Published var openOnLaunch: Bool            { didSet { defaults.set(openOnLaunch, forKey: K.openOnLaunch) } }
     @Published var launchAtLogin: Bool           { didSet { defaults.set(launchAtLogin, forKey: K.launchAtLogin) } }
     @Published var onboardingComplete: Bool      { didSet { defaults.set(onboardingComplete, forKey: K.onboardingComplete) } }
+    /// Flips to true the first time a non-Pro user tries the detached
+    /// window. First trial is 30s; every subsequent attempt is 10s.
+    @Published var detachTrialActivated: Bool    { didSet { defaults.set(detachTrialActivated, forKey: K.detachTrialActivated) } }
 
     @Published var menuBarIconName: String       { didSet { defaults.set(menuBarIconName, forKey: K.menuBarIconName) } }
     @Published var showInDock: Bool              { didSet { defaults.set(showInDock, forKey: K.showInDock) } }
@@ -73,6 +76,7 @@ final class Preferences: ObservableObject {
         openOnLaunch = defaults.bool(forKey: K.openOnLaunch)
         launchAtLogin = defaults.bool(forKey: K.launchAtLogin)
         onboardingComplete = defaults.bool(forKey: K.onboardingComplete)
+        detachTrialActivated = defaults.bool(forKey: K.detachTrialActivated)
 
         menuBarIconName = defaults.string(forKey: K.menuBarIconName) ?? MenuBarIcon.defaultIcon.rawValue
         showInDock = defaults.bool(forKey: K.showInDock)
@@ -122,6 +126,7 @@ final class Preferences: ObservableObject {
         static let openOnLaunch = "openOnLaunch"
         static let launchAtLogin = "launchAtLogin"
         static let onboardingComplete = "onboardingComplete"
+        static let detachTrialActivated = "detachTrialActivated"
         static let menuBarIconName = "menuBarIconName"
         static let showInDock = "showInDock"
         static let maskStyle = "maskStyle"

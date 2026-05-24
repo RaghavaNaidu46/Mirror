@@ -34,6 +34,12 @@ final class AppState: ObservableObject {
     /// preview while this is non-nil.
     @Published var snapCountdown: Int?
 
+    /// When non-nil, the detached window is in a free-trial session for a
+    /// non-Pro user. Expires at this Date; the mirror surface renders a
+    /// countdown chip and `MenuBarController` schedules a one-shot to close
+    /// the window + open the paywall at the deadline.
+    @Published var detachTrialDeadline: Date?
+
     private var paywallController: PaywallWindowController?
 
     init() {

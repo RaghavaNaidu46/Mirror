@@ -117,7 +117,9 @@ private struct MirrorBody: View {
                     .animation(.easeInOut(duration: 0.15), value: isHovering)
             }
 
-            if appState.snapPreview == nil && !appState.isCapturingSnap {
+            // Hide the settings gear in the detached window — that corner is
+            // owned by the close button from `DetachedMirrorView`.
+            if appState.snapPreview == nil && !appState.isCapturingSnap && !appState.isDetached {
                 settingsLinkButton
                     .padding(.top, overlayCornerInset)
                     .padding(.trailing, overlayCornerInset)
@@ -128,6 +130,16 @@ private struct MirrorBody: View {
 
             if let countdown = appState.snapCountdown, !appState.isCapturingSnap {
                 countdownOverlay(value: countdown)
+                    .transition(.opacity)
+            }
+
+            if let deadline = appState.detachTrialDeadline,
+               appState.isDetached,
+               !appState.isCapturingSnap {
+                DetachTrialBadge(deadline: deadline)
+                    .padding(.top, overlayCornerInset)
+                    .padding(.leading, overlayCornerInset)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .transition(.opacity)
             }
 
@@ -325,6 +337,34 @@ private struct MirrorBody: View {
         case .defaultChrome: return AnyShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         case .square:        return AnyShape(Rectangle())
         case .circle:        return AnyShape(Circle())
+        }
+    }
+}
+
+/// Live "trial X seconds left" chip shown over the detached mirror while a
+/// non-Pro user is in their preview window. Updates once per second via
+/// TimelineView and tints amber under 5 seconds so the deadline is obvious.
+private struct DetachTrialBadge: View {
+    let deadline: Date
+
+    var body: some View {
+        TimelineView(.periodic(from: .now, by: 1)) { context in
+            let remaining = max(0, Int(deadline.timeIntervalSince(context.date).rounded(.up)))
+            let urgent = remaining <= 5
+            HStack(spacing: 4) {
+                Image(systemName: "timer")
+                    .font(.system(size: 11, weight: .semibold))
+                Text("\(remaining)s")
+                    .font(.system(size: 11, weight: .semibold, design: .monospaced))
+            }
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(
+                (urgent ? Color.orange : Color.black).opacity(urgent ? 0.85 : 0.55),
+                in: Capsule()
+            )
+            .foregroundStyle(.white)
+            .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 1)
         }
     }
 }
